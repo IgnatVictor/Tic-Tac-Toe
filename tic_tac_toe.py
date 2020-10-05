@@ -9,15 +9,41 @@ def init_board():
 
     return board
 
+def get_input(text):
+    rows = ['A', 'B', 'C']
+    cols = ['1', '2', '3']
+    
+    inp = []
+    for char in input(text):
+        if char != ' ':
+            inp.append(char.upper())
 
-print(init_board())
+    while inp[0] not in rows or inp[1] not in cols:
+        inp = []
+        for char in input(text):
+            if char != ' ':
+                inp.append(char.upper())
 
+    return (rows.index(inp[0]), cols.index(inp[1]))
 
-# def get_move(board, player):
-#     """Returns the coordinates of a valid move for player on board."""
-#     row, col = 0, 0
-#     return row, col
+def get_move(board, player):
+    """Returns the coordinates of a valid move for player on board."""
 
+    position = get_input("Please enter row and column (ex: A2) ")
+    row = position[0]
+    col = position[1]
+
+    if board[row][col] == ".":
+        return (row, col)
+    else:
+        position = get_input("Please try again, position already occupied ")
+        row = position[0]
+        col = position[1]
+
+    return position
+
+board = init_board()
+print(get_move(board, 0))
 
 # def get_ai_move(board, player):
 #     """Returns the coordinates of a valid move for player on board."""
