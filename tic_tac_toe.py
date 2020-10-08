@@ -49,16 +49,8 @@ def get_move(board, player):
         return (row, col)
     else:
         position = get_input("Please try again, position already occupied ")
-        # row = position[0]
-        # col = position[1]
 
     return position
-
-
-# def get_ai_move(board, player):
-#     """Returns the coordinates of a valid move for player on board."""
-#     row, col = 0, 0
-#     return row, col
 
 
 def mark(board, player, row, col):
@@ -102,6 +94,7 @@ def is_full(board):
 
 def print_board(board):
     import os
+
     func = "clear" if os.uname().sysname == "Linux" else "cls"
     os.system(func)
 
@@ -142,25 +135,6 @@ def tictactoe_game(mode="HUMAN-HUMAN"):
             player = "0"
         else:
             player = "X"
-
-
-# # def main_menu():
-# #     tictactoe_game('HUMAN-HUMAN')
-
-
-# if __name__ == '__main__':
-#     main_menu()
-
-# board = init_board()
-# print(get_move(board, 0))
-# print_board(board)
-# test_board = [
-#     ["0", "0", "0"],
-#     ["0", "X", "0"],
-#     ["X", "0", "X"],
-# ]
-
-# print(is_full(test_board))
 
 
 tictactoe_game("HUMAN-HUMAN")
