@@ -4,6 +4,7 @@ def init_board():
     for row in range(3):
         temp = []
         for column in range(3):
+        
             temp.append(".")
         board.append(temp)
 
@@ -29,6 +30,7 @@ def get_input(text="Please enter row and column (ex: A2) "):
   
     while inp[0] not in rows or inp[1] not in cols:
         inp = []
+        user_text = input(text).upper()
         for char in user_text:
             if char != " ":
                 inp.append(char)
@@ -37,7 +39,6 @@ def get_input(text="Please enter row and column (ex: A2) "):
 
 
 def get_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
 
     position = get_input()
     row = position[0]
@@ -151,6 +152,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
 
         # winner = 0
         # print_result(winner)
+    
 
 
 # # def main_menu():
