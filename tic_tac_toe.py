@@ -424,7 +424,7 @@ def tic_toe(x):
         i = 0
         while i<15:
             print_board(board)
-            coord =get_move_ai_lastmove(board,allastmovex)
+            coord =get_move_ai_lastmove(board,allastmove0)
             row = coord[0]
             col = coord[1]
             mark(board,computerx,row,col)
@@ -447,7 +447,7 @@ def tic_toe(x):
 def main_menu():
     print("Game Mode :\n","1. Player   Vs Player \n",'2. Player   Vs Al Bundy \n',"3. Al Bundy(easy) Vs Player \n","4. Al Bundy Vs Al Bundy \n", 
     "5. Player vs Safe Al Bundy \n", "6. Al Bundy Safe vs Player ")
-    x= int(input("Select 1 , 2 , 3 , 4 ,5 or 6:  "))
+    x= int(input("Select 1 , 2 , 3 , 4 ,5 or 6 : "))
     tic_toe(x)
 
 
