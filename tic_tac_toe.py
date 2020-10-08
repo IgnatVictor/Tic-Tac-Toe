@@ -9,12 +9,130 @@ player2= "0"
 computer0= "0"
 computerx= "X"
 
+
+lista_miscari_random = ["00","01","02","10","11","12","10","11","12"]
+allastmovex = "X"
+allastmove0 = "0"
+
 def init_board():
     board = [['.','.','.'],
              ['.','.','.'],
              ['.','.','.']]
     return board
 board = init_board()
+
+def get_move_ai_lastmove(board,allastmovex):
+    
+    list_coord= []
+    
+    list1 = [board[0][0],board[0][1],board[0][2]]
+    list9 = [board[1][0],board[1][1],board[1][2]]
+    list3 = [board[2][0],board[2][1],board[2][2]]
+    list4 = [board[0][0],board[1][1],board[2][2]]
+    list5 = [board[0][0],board[1][0],board[2][0]]
+    list6 = [board[0][1],board[1][1],board[2][1]]
+    list7 = [board[0][2],board[1][2],board[2][2]]
+    list8 = [board[0][2],board[1][1],board[2][0]]
+    if list1.count(allastmovex) == 2 and list1.count('.') == 1:
+        z= 0
+        list_coord = []
+        for i,x in enumerate(list1):
+            
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    
+    elif list9.count(allastmovex) == 2 and list9.count('.') == 1:
+        z= 1
+        list_coord = []
+        for i,x in enumerate(list9):
+            
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list3.count(allastmovex) == 2 and list3.count('.') == 1:
+        z= 2
+        list_coord = []
+        for i,x in enumerate(list3):
+            
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list4.count(allastmovex) == 2 and list4.count('.') == 1:
+        z= -1
+        list_coord = []
+        for i,x in enumerate(list4):
+            z= z+1
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list5.count(allastmovex) == 2 and list5.count('.') == 1:
+        z= 0
+        list_coord = []
+        for i,x in enumerate(list5):
+           
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list6.count(allastmovex) == 2 and list6.count('.') == 1:
+        z= -1
+        list_coord = []
+        for i,x in enumerate(list6):
+            z= z+1
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list7.count(allastmovex) == 2 and list7.count('.') == 1:
+        z= -1
+        list_coord = []
+        for i,x in enumerate(list7):
+            z=z+1
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    elif list8.count(allastmovex) == 2 and list8.count('.') == 1:
+        z= -1
+        list_coord = []
+        for i,x in enumerate(list8):
+            z=z+1
+            if x ==".":
+                list_coord.append(z)
+                list_coord.append(i)
+            else:
+                pass
+    else:
+        board = init_board()
+        game = True
+        while game:
+            
+            move = random.choice(lista_miscari_random)
+            board = init_board()
+            for i in move:
+                list_coord.append(int(i))
+            x= list_coord[0]
+            y = list_coord[1]
+            if board[x][y] == ".":
+                game = False
+            
+        else:
+            board = init_board()
+            move = []
+
+    return tuple(list_coord)
 
 def get_move(board,player1):
     
@@ -154,6 +272,14 @@ def print_result(board):
         
         print(f"player {computer0} has won !")
         return False
+    elif(has_won(board,allastmovex)==False):
+        
+        print(f"player {allastmovex} has won !")
+        return False
+    elif(has_won(board,allastmove0)==False):
+        
+        print(f"player {allastmove0} has won !")
+        return False
     elif is_full(board) == True:
         print("This is a Tie")
         return False
@@ -266,11 +392,62 @@ def tic_toe(x):
             if(print_result(board)==False):
                 print_board(board)
                 break
+    elif x == 5:
+        board =init_board()
+        
+        i = 0
+        while i<15:
+            print_board(board)
+            coord =get_move(board,player1)
+            row = coord[0]
+            col = coord[1]
+            mark(board,player1,row,col)
+            i= i+1
+            if(print_result(board)==False):
+                print_board(board)
+                break
 
-            
+            time.sleep(1)
+            print_board(board)
+            coord =get_move_ai_lastmove(board,allastmovex)
+            row = coord[0]
+            col = coord[1]
+            mark(board,allastmove0,row,col)
+            i=i+1
+            time.sleep(1)
+            if(print_result(board)==False):
+                print_board(board)
+                break         
+    elif x ==6:
+        board =init_board()
+        
+        i = 0
+        while i<15:
+            print_board(board)
+            coord =get_move_ai_lastmove(board,allastmovex)
+            row = coord[0]
+            col = coord[1]
+            mark(board,computerx,row,col)
+            i= i+1
+            if(print_result(board)==False):
+                print_board(board)
+                break
+
+            time.sleep(2)
+            print_board(board)
+            coord =get_move(board,player2)
+            row = coord[0]
+            col = coord[1]
+            mark(board,player2,row,col)
+            i=i+1
+            time.sleep(2)
+            if(print_result(board)==False):
+                print_board(board)
+                break      
 def main_menu():
-    print("Game Mode :\n","1. Player   Vs Player \n",'2. Player   Vs Al Bundy \n',"3. Al Bundy Vs Player \n","4. Al Bundy Vs Al Bundy")
-    x= int(input("Select 1 , 2 , 3 or 4:  "))
+    print("Game Mode :\n","1. Player   Vs Player \n",'2. Player   Vs Al Bundy \n',"3. Al Bundy(easy) Vs Player \n","4. Al Bundy Vs Al Bundy \n", 
+    "5. Player vs Safe Al Bundy \n", "6. Al Bundy Safe vs Player ")
+    x= int(input("Select 1 , 2 , 3 , 4 ,5 or 6:  "))
     tic_toe(x)
 
 
